@@ -1,68 +1,40 @@
-![](https://heatbadger.now.sh/github/readme/contributte/tester-skeleton/)
+# Tester skeleton
 
-<p align=center>
-  <a href="https://github.com/contributte/tester-skeleton/actions"><img src="https://badgen.net/github/checks/contributte/tester-skeleton/master"></a>
-  <a href="https://codecov.io/gh/contributte/tester-skeleton"><img src="https://badgen.net/codecov/c/github/contributte/tester-skeleton"></a>
-  <a href="https://packagist.org/packages/contributte/tester-skeleton"><img src="https://badgen.net/packagist/dm/contributte/tester-skeleton"></a>
-  <a href="https://packagist.org/packages/contributte/tester-skeleton"><img src="https://badgen.net/packagist/v/contributte/tester-skeleton"></a>
-</p>
-<p align=center>
-  <a href="https://packagist.org/packages/contributte/tester-skeleton"><img src="https://badgen.net/packagist/php/contributte/tester-skeleton"></a>
-  <a href="https://github.com/contributte/tester-skeleton"><img src="https://badgen.net/github/license/contributte/tester-skeleton"></a>
-  <a href="https://bit.ly/ctteg"><img src="https://badgen.net/badge/support/gitter/cyan"></a>
-  <a href="https://bit.ly/cttfo"><img src="https://badgen.net/badge/support/forum/yellow"></a>
-  <a href="https://contributte.org/partners.html"><img src="https://badgen.net/badge/sponsor/donations/F96854"></a>
-</p>
+A Nette application skeleton with Nette Tester and the Contributte QA toolchain.
 
-<p align=center>
-Website 🚀 <a href="https://contributte.org">contributte.org</a> | Contact 👨🏻‍💻 <a href="https://f3l1x.io">f3l1x.io</a> | Twitter 🐦 <a href="https://twitter.com/contributte">@contributte</a>
-</p>
+## Requirements
 
------
+- PHP 8.4 or newer
+- [Composer](https://getcomposer.org/)
 
-## Goal
-
-Main goal is to show how to test [Nette](https://nette.org) components.
-
-## Installation
-
-You will need `PHP 8.4+` and [Composer](https://getcomposer.org/).
-
-Create project using composer.
+## Create a project
 
 ```bash
-composer create-project -s dev contributte/tester-skeleton acme
+composer create-project contributte/tester-skeleton acme
+cd acme
+make init
+make project
 ```
 
-Now you have application installed. It's time to run it.
+`make init` creates `config/local.neon` from `config/local.neon.example`. `make project` installs Composer dependencies and creates writable `var/tmp` and `var/log` directories.
 
-## Startup
-
-The easiest way is to use php built-in web server.
+## Local development
 
 ```bash
 make dev
-# php -S 0.0.0.0:8000 -t www
 ```
 
-Then visit [http://localhost:8000](http://localhost:8000) in your browser.
+Open [http://localhost:8000](http://localhost:8000). The development server uses `www/` as its document root.
 
-The second part is to execute tests.
+## Configuration
+
+Application configuration is in `config/config.neon`. Keep machine- or environment-specific settings in the ignored `config/local.neon` file.
+
+## Quality assurance
 
 ```bash
+make qa
 make tests
 ```
 
-## Development
-
-See [how to contribute](https://contributte.org/contributing.html) to this package.
-
-This package is currently maintaining by these authors.
-
-<a href="https://github.com/f3l1x">
-    <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
-</a>
-
------
-
-Consider to [support](https://contributte.org/partners.html) **contributte** development team. Also thank you for using this project.
+`make qa` runs coding-standard and PHPStan checks. `make tests` runs Nette Tester tests from `tests/`.
