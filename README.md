@@ -7,16 +7,16 @@ A Nette application skeleton with Nette Tester and the Contributte QA toolchain.
 - PHP 8.4 or newer
 - [Composer](https://getcomposer.org/)
 
-## Create a project
+## Tester quick start
 
 ```bash
 composer create-project contributte/tester-skeleton acme
 cd acme
 make init
-make project
+make setup
 ```
 
-`make init` creates `config/local.neon` from `config/local.neon.example`. `make project` installs Composer dependencies and creates writable `var/tmp` and `var/log` directories.
+Composer installs the dependencies. `make init` creates `config/local.neon` from `config/local.neon.example`, and `make setup` creates writable `var/tmp` and `var/log` directories.
 
 ## Local development
 
@@ -26,6 +26,14 @@ make dev
 
 Open [http://localhost:8000](http://localhost:8000). The development server uses `www/` as its document root.
 
+In another terminal, verify the visible bundled page and run its tests:
+
+```bash
+curl -s http://localhost:8000 | grep -F 'Hello!'
+# 	Hello!
+make tests
+```
+
 ## Configuration
 
 Application configuration is in `config/config.neon`. Keep machine- or environment-specific settings in the ignored `config/local.neon` file.
@@ -34,7 +42,6 @@ Application configuration is in `config/config.neon`. Keep machine- or environme
 
 ```bash
 make qa
-make tests
 ```
 
 `make qa` runs coding-standard and PHPStan checks. `make tests` runs Nette Tester tests from `tests/`.
